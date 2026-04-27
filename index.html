@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balneario Oaxtepec | Diversión y Descanso</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo"><i class="fas fa-umbrella-beach"></i> Oasis Paraíso</div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#acerca">Nosotros</a></li>
+            <li><a href="#hotel">Hotel</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contacto">Ubicación</a></li>
+        </ul>
+    </nav>
+
+    <a href="https://wa.me/521234567890" class="whatsapp-float" target="_blank" title="Reserva tu entrada">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section id="inicio" class="hero">
+        <video autoplay muted loop id="bg-video">
+            <source src="video/video-balneario.mp4" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Escápate al Paraíso Terrenal</h1>
+            <p>Aguas cristalinas, toboganes y el mejor clima para toda la familia.</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="img/foto1.jpg" alt="Alberca principal">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/foto2.jpg" alt="Toboganes">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/foto3.jpg" alt="Área de descanso">
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/foto4.jpg" alt="Área de descanso">
+                </div>
+                <div class="carousel-overlay-btn">
+                <a href="https://wa.me/521234567890" class="btn btn-reserve">¡Reserva tu lugar ahora!</a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="acerca" class="section light-bg">
+        <div class="container">
+            <h2>Bienvenidos a Oasis Paraíso</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.6;">Con más de 15 años de tradición, nuestro balneario es el destino favorito para quienes buscan un respiro de la ciudad. Ofrecemos un ambiente familiar seguro, rodeado de naturaleza y las mejores instalaciones acuáticas de la región.</p>
+            
+            <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; text-align: left; margin-bottom: 2rem;">
+                <div class="card">
+                    <h3 style="color: #0077be;">Nuestra Experiencia</h3>
+                    <p>Nos enfocamos en brindar momentos inolvidables a través de un servicio hospitalario, higiene impecable en nuestras albercas y seguridad garantizada para niños y adultos.</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #0077be;">Sustentabilidad</h3>
+                    <p>Estamos comprometidos con el medio ambiente, utilizando sistemas de filtrado ecológicos y preservando las áreas verdes que rodean nuestro manantial.</p>
+                </div>
+            </div>
+
+            <h3 style="color: #2e8b57; margin-bottom: 1rem;">¿Por qué visitarnos?</h3>
+            <ul style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem;">
+                <li><strong>Seguridad:</strong> Salvavidas certificados en todas las áreas acuáticas.</li>
+                <li><strong>Higiene:</strong> Limpieza profunda y monitoreo de pH cada 2 horas.</li>
+                <li><strong>Comodidad:</strong> Estacionamiento amplio y áreas de sombra gratuitas.</li>
+            </ul>
+        </div>
+        <div class="container">
+            <div style="margin-top: 3rem;">
+                <a href="#contacto" class="btn-cta">Ver Precios y Paquetes de Temporada</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="hotel" class="section">
+        <div class="container">
+            <h2>Hospedaje Oasis</h2>
+            <p style="margin-bottom: 3rem;">Extiende tu diversión y descansa en nuestras exclusivas habitaciones con vista a las albercas.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fas fa-bed" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Habitaciones Junior</h3>
+                    <p>Perfectas para parejas. Incluye cama King Size, aire acondicionado y TV por cable.</p>
+                    <p><strong>Desde: $1,200 MXN</strong></p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-users" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Suites Familiares</h3>
+                    <p>Espacio para 6 personas con cocineta, terraza privada y acceso directo al área infantil.</p>
+                    <p><strong>Desde: $2,500 MXN</strong></p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-coffee" style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Beneficios Huésped</h3>
+                    <p>Tu estancia incluye desayuno buffet, acceso temprano a las albercas y estacionamiento nocturno vigilado.</p>
+                </div>
+            </div>
+
+            <div class="table-container table-responsive" style="margin-top: 3rem; overflow-x: auto;">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">Comparativa de Habitaciones</h3>
+                <table class="hotel-table">
+                    <thead>
+                        <tr>
+                            <td><strong>Capacidad</strong></td>
+                            <td>2 Adultos</td>
+                            <td>4 Adultos + 2 Niños</td>
+                            <td>Hasta 8 personas</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vista</strong></td>
+                            <td>Jardines</td>
+                            <td>Albercas</td>
+                            <td>Panorámica al Parque</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aire Acondicionado</strong></td>
+                            <td><i class="fas fa-check" style="color: green;"></i></td>
+                            <td><i class="fas fa-check" style="color: green;"></i></td>
+                            <td><i class="fas fa-check" style="color: green;"></i></td>
+                        </tr>
+                    <tr>
+                            <td><strong>Cocineta</strong></td>
+                            <td><i class="fas fa-times" style="color: red;"></i></td>
+                            <td><i class="fas fa-check" style="color: green;"></i></td>
+                            <td><i class="fas fa-check" style="color: green;"></i></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precio por noche</strong></td>
+                            <td>$1,200</td>
+                            <td>$2,500</td>
+                            <td>$3,800</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="https://wa.me/521234567890?text=Hola, deseo reservar una habitación" class="btn-cta">Reservar Habitación</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="section">
+        <div class="container">
+            <h2>Atracciones y Comodidades</h2>
+            <p style="margin-bottom: 3rem; color: #666;">Todo lo que necesitas para un día inolvidable.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fas fa-water" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Albercas Termales</h3>
+                    <p>¡Relajación total! Todos los martes y jueves, aprovecha nuestro 2x1 en masajes relajantes al contratar tu entrada a las pozas termales.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-swimmer" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Toboganes Extremos</h3>
+                    <p>¡Diversión sin límites! Contamos con el nuevo 'Vórtice Azul', el tobogán más alto de la región. ¿Te atreves a lanzarte?</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-hamburger" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Zona de Restaurantes</h3>
+                    <p>Sabor garantizado. En la compra de un paquete familiar, te regalamos una jarra de agua de fruta natural para refrescar tu comida.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-campground" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Área de Camping</h3>
+                    <p>Noches de fogata. Reserva tu espacio de camping de viernes a domingo y recibe un kit de malvaviscos y leña gratis.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-spa" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Masajes y Spa</h3>
+                    <p>Renueva tu energía. Paquete 'Oasis Relax': Masaje sueco + exfoliación cítrica por solo $450 MXN por persona.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-store" style="font-size: 2.5rem; color: #0077be; margin-bottom: 1rem;"></i>
+                    <h3>Tienda de Souvenirs</h3>
+                    <p>Recuerdos inolvidables. Presenta tu brazalete de entrada y obtén un 15% de descuento en protectores solares y sandalias..</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="section light-bg">
+        <div class="container">
+            <h2>Explora el Paraíso</h2>
+            <p style="margin-bottom: 2rem;">Vistazo rápido a nuestras instalaciones.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox('img_alberca.jpg', 'Alberca Olímpica')">
+                    <img src="https://images.unsplash.com/photo-1590077428593-a55bb07c4665?auto=format&fit=crop&w=400&q=80" alt="Alberca">
+                    <div class="gallery-overlay"><span>Ver Foto</span></div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('img_infantil.jpg', 'Área Infantil Tematizada')">
+                    <img src="https://images.unsplash.com/photo-1590077428593-a55bb07c4665?auto=format&fit=crop&w=400&q=80" alt="Juegos Acuáticos">
+                    <div class="gallery-overlay"><span>Ver Foto</span></div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('img_jardin.jpg', 'Extensos Jardines')">
+                    <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=400&q=80" alt="Jardines">
+                    <div class="gallery-overlay"><span>Ver Foto</span></div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox('img_comedor.jpg', 'Asadores Disponibles')">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80" alt="Asadores">
+                    <div class="gallery-overlay"><span>Ver Foto</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <section id="contacto" class="section">
+        <div class="container">
+            <h2>Planea tu Visita</h2>
+            <p style="margin-bottom: 3rem;">Contáctanos para paquetes escolares o eventos empresariales.</p>
+
+            <div class="contact-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; text-align: left;">
+                
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: #0077be;">Preguntas y Cotizaciones</h3>
+                    <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <input type="text" name="nombre" placeholder="Nombre Completo" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                        <input type="email" name="email" placeholder="Correo Electrónico" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                        
+                        <select name="interes" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: white;">
+                            <option value="" disabled selected>Motivo de contacto</option>
+                            <option value="entrada">Entradas Generales</option>
+                            <option value="evento">Eventos Especiales</option>
+                            <option value="camping">Reservar Camping</option>
+                        </select>
+
+                        <textarea name="mensaje" rows="4" placeholder="¿Cuántas personas nos visitan y en qué fecha?" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+                        
+                        <button type="submit" class="btn" style="cursor: pointer; background-color: #0077be; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold;">Enviar Consulta</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <div class="plantel-info" style="margin-bottom: 2.5rem;">
+                        <h3 style="color: #2e8b57;"><i class="fas fa-clock"></i> Horarios</h3>
+                        <p>Lunes a Domingo: 9:00 AM - 6:00 PM</p>
+                        <p><strong>Teléfono:</strong> 55 9876 5432</p>
+                    </div>
+
+                    <div class="plantel-info">
+                        <h3 style="color: #0077be;"><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                        <p>Carretera Libre Km 45, Paraíso Escondido.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15050.0!2d-99.0!3d19.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDAwJzAwLjAiTiA5OcKwMDAnMDAuMCJX!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" width="100%" height="200" style="border:0; border-radius: 10px; margin-top: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section light-bg">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <p style="margin-bottom: 2rem;">Todo lo que necesitas saber para tu estancia.</p>
+            
+            <div class="faq-container" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <details class="faq-item">
+                    <summary>¿Cuáles son los horarios de Check-in y Check-out?</summary>
+                    <p>La entrada a las habitaciones (Check-in) es a las 3:00 PM. La salida (Check-out) es a las 12:00 PM. Sin embargo, puedes disfrutar de las albercas desde las 9:00 AM el día de tu llegada.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿El hospedaje incluye la entrada al balneario?</summary>
+                    <p>¡Sí! Al hospedarte con nosotros, las entradas al balneario y todos los toboganes están incluidas para todos los registrados en la habitación durante los días de estancia.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Se permiten mascotas en el hotel o balneario?</summary>
+                    <p>Por razones de higiene y seguridad en las áreas acuáticas, no se permiten mascotas en el balneario ni en las habitaciones del hotel.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Puedo ingresar alimentos y bebidas?</summary>
+                    <p>Se permite el ingreso de alimentos al área de balneario (excepto envases de vidrio). En el área de hotel contamos con restaurante, pero las Suites Familiares incluyen cocineta para tu comodidad.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Tienen estacionamiento vigilado?</summary>
+                    <p>Sí, contamos con estacionamiento privado y vigilancia las 24 horas gratuito para todos nuestros huéspedes del hotel.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Balneario Oasis Paraíso. Diversión que fluye.</p>
+            
+            <div class="social-links" style="margin: 1.5rem 0; font-size: 1.5rem;">
+                <a href="https://facebook.com" target="_blank" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+            </div>
+
+            <div class="privacy-accordion" style="font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem;">
+                <p>Reglamento: No se permiten envases de vidrio | Uso obligatorio de traje de baño en albercas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="promo-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" id="closePromo">&times;</span>
+            <div class="promo-badge" id="promo-badge">¡PROMO DEL DÍA!</div>
+            <h2 id="promo-title">Cargando oferta...</h2>
+            <div class="promo-body">
+                <p id="promo-text-top">¡Te esperamos!</p>
+                <div class="price-circle" id="promo-value">--</div>
+                <p id="promo-text-bottom">No te lo pierdas.</p>
+            </div>
+            <a href="https://wa.me/521234567890" class="btn-promo">¡Consultar Disponibilidad!</a>
+            <p class="promo-note">*Aplican restricciones. Válido en taquilla.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
