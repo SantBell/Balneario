@@ -21,7 +21,7 @@
             <li><a href="#acerca">Nosotros</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#contacto">Ubicación</a></li>
+            <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
@@ -295,21 +295,52 @@
             <div class="contact-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; text-align: left;">
                 
                 <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem; color: #0077be;">Preguntas y Cotizaciones</h3>
+                    <h3 style="margin-bottom: 1.5rem; color: #0077be;">Reservaciones y Cotizaciones</h3>
                     <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
                         <input type="text" name="nombre" placeholder="Nombre Completo" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
-                        <input type="email" name="email" placeholder="Correo Electrónico" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
                         
-                        <select name="interes" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: white;">
-                            <option value="" disabled selected>Motivo de contacto</option>
-                            <option value="entrada">Entradas Generales</option>
-                            <option value="evento">Eventos Especiales</option>
-                            <option value="camping">Reservar Camping</option>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <input type="email" name="email" placeholder="Correo Electrónico" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                            <input type="tel" name="telefono" placeholder="WhatsApp / Teléfono" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                        </div>
+
+                        <select name="servicio_interes" id="servicio_interes" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: white;">
+                            <option value="" disabled selected>¿Qué te interesa reservar?</option>
+                            <option value="solo_hotel">Solo Habitación de Hotel</option>
+                            <option value="solo_evento">Solo Salón para Evento</option>
+                            <option value="hotel_evento">Evento con Hospedaje</option>
+                            <option value="balneario">Entradas al Balneario / Camping</option>
                         </select>
 
-                        <textarea name="mensaje" rows="4" placeholder="¿Cuántas personas nos visitan y en qué fecha?" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+                        <div id="campo_tipo_evento" style="display: none; flex-direction: column;">
+                            <label style="font-size: 0.8rem; color: #e67e22; margin-bottom: 5px; font-weight: bold;">Tipo de Evento Especial:</label>
+                            <select name="tipo_evento" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: white;">
+                                <option value="" disabled selected>Selecciona el tipo de evento</option>
+                                <option value="boda">Boda / Aniversario</option>
+                                <option value="xv">XV Años</option>
+                                <option value="corporativo">Evento Empresarial</option>
+                                <option value="graduacion">Graduación</option>
+                                <option value="infantil">Fiesta Infantil</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div style="display: flex; flex-direction: column;">
+                                <label style="font-size: 0.8rem; color: #666; margin-left: 5px;">Fecha Estimada</label>
+                                <input type="date" name="fecha_llegada" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;">
+                            </div>
+                            <select name="num_personas" style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; background: white; align-self: flex-end;">
+                                <option value="" disabled selected>Número de personas</option>
+                                <option value="1-4">1 a 4 personas</option>
+                                <option value="5-10">5 a 10 personas</option>
+                                <option value="grupo">Grupo (más de 10)</option>
+                            </select>
+                        </div>
+
+                        <textarea name="mensaje" rows="3" placeholder="Detalles adicionales..." required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
                         
-                        <button type="submit" class="btn" style="cursor: pointer; background-color: #0077be; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold;">Enviar Consulta</button>
+                        <button type="submit" class="btn" style="cursor: pointer; background-color: #0077be; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold;">Enviar Solicitud</button>
                     </form>
                 </div>
 

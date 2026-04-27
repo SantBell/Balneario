@@ -98,3 +98,19 @@ document.getElementById('lightbox').addEventListener('click', function(e) {
         closeLightbox();
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const selectorServicio = document.getElementById('servicio_interes');
+    const campoEvento = document.getElementById('campo_tipo_evento');
+
+    selectorServicio.addEventListener('change', function() {
+        // Si la opción seleccionada incluye la palabra 'evento'
+        if (this.value === 'solo_evento' || this.value === 'hotel_evento') {
+            campoEvento.style.display = 'flex';
+            // Opcional: añadir una pequeña animación de entrada
+            campoEvento.style.animation = 'fadeIn 0.5s';
+        } else {
+            campoEvento.style.display = 'none';
+        }
+    });
+});
