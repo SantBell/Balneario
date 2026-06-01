@@ -1,55 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
     // =========================================================================
-    // 1. CONFIGURACIÓN Y PASES DEL CARRUSEL / MOSAICO
+    // 1. CONFIGURACIÓN Y CONTROL DEL CARRUSEL / MOSAICO (HERO)
     // =========================================================================
     const track = document.getElementById("carouselTrack");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const cards = document.querySelectorAll(".carousel-card");
 
-    let index = 0;
+    let currentIndex = 0;
 
     function updateCarouselPosition() {
         if (!cards.length || !track) return;
         
         // Obtener el ancho de una tarjeta dinámica para el cálculo exacto
         const cardWidth = cards[0].getBoundingClientRect().width;
-        // Espacio (gap) configurado en el CSS
+        // Espacio (gap) configurado en el CSS (ajusta a 20 o 25 según tu diseño)
         const gap = 25; 
         
         // Desplazamiento matemático en el eje X
-        track.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
+        track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
     }
 
-    nextBtn.addEventListener("click", () => {
-        // Cuántas tarjetas se ven en pantalla según el dispositivo
-        const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
-        
-        if (index < cards.length - maxVisibleCards) {
-            index++;
-        } else {
-            index = 0; // Efecto bucle al llegar al final
-        }
-        updateCarouselPosition();
-    });
+    if (track && prevBtn && nextBtn && cards.length > 0) {
+        nextBtn.addEventListener("click", () => {
+            // Cuántas tarjetas se ven en pantalla según el dispositivo
+            const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+            
+            if (currentIndex < cards.length - maxVisibleCards) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Efecto bucle al llegar al final (regresa al inicio)
+            }
+            updateCarouselPosition();
+        });
 
-    prevBtn.addEventListener("click", () => {
-        const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
-        
-        if (index > 0) {
-            index--;
-        } else {
-            index = cards.length - maxVisibleCards; // Salta al final si está al principio
-        }
-        updateCarouselPosition();
-    });
+        prevBtn.addEventListener("click", () => {
+            const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+            
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = cards.length - maxVisibleCards; // Salta al final si está al principio
+            }
+            updateCarouselPosition();
+        });
 
-    // Reajustar posición si la ventana cambia de tamaño o rota la pantalla
-    window.addEventListener("resize", updateCarouselPosition);
+        // Reajustar posición si la ventana cambia de tamaño o rota la pantalla
+        window.addEventListener("resize", updateCarouselPosition);
+    }
 
 
     // =========================================================================
-    // 2. CONTROL DEL MENÚ RESPONSIVE Y SUBMENÚ (DROPDOWN)
+    // 2. CONTROL DEL MENÚ RESPONSIVE Y SUBMENÚ (DROPDOWN) PARA CELULARES
     // =========================================================================
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
@@ -65,24 +68,27 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Cambia el ícono visual de hamburguesa (☰) a equis (✕)
             const icon = menuToggle.querySelector("i");
-            if (navLinks.classList.contains("mobile-active")) {
-                icon.className = "fa-solid fa-xmark";
-            } else {
-                icon.className = "fa-solid fa-bars";
+            if (icon) {
+                if (navLinks.classList.contains("mobile-active")) {
+                    icon.className = "fa-solid fa-xmark";
+                } else {
+                    icon.className = "fa-solid fa-bars";
+                }
             }
         });
     }
 
-    // Control Seguro y Táctil del Dropdown de Servicios
-    if (dropdownToggle && dropdownMenu && dropdownContainer) {
+    // Control Seguro y Táctil del Dropdown de Servicios (Evita recarga en celulares)
+    if (dropdownToggle && (dropdownMenu || dropdownContainer)) {
         dropdownToggle.addEventListener("click", (e) => {
             // Solo intercepta el comportamiento si estamos en resoluciones móviles/tabletas
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
                 e.stopPropagation(); // Detiene la propagación del evento táctil
                 
-                dropdownMenu.classList.toggle("open");
-                dropdownContainer.classList.toggle("open-toggle");
+                // Agrega compatibilidad para ambas clases del CSS que tenías mezcladas
+                if (dropdownMenu) dropdownMenu.classList.toggle("open");
+                if (dropdownContainer) dropdownContainer.classList.toggle("open-toggle");
             }
         });
     }
@@ -91,12 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const allLinks = navLinks ? navLinks.querySelectorAll("a:not(.dropdown-toggle)") : [];
     allLinks.forEach(link => {
         link.addEventListener("click", () => {
-            navLinks.classList.remove("mobile-active");
+            if (navLinks) navLinks.classList.remove("mobile-active");
             if (dropdownMenu) dropdownMenu.classList.remove("open");
             if (dropdownContainer) dropdownContainer.classList.remove("open-toggle");
             
             // Restablece el ícono de hamburguesa
-            if (menuToggle) menuToggle.querySelector("i").className = "fa-solid fa-bars";
+            if (menuToggle) {
+                const icon = menuToggle.querySelector("i");
+                if (icon) icon.className = "fa-solid fa-bars";
+            }
         });
     });
 
@@ -107,85 +116,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 navLinks.classList.remove("mobile-active");
                 if (dropdownMenu) dropdownMenu.classList.remove("open");
                 if (dropdownContainer) dropdownContainer.classList.remove("open-toggle");
-                menuToggle.querySelector("i").className = "fa-solid fa-bars";
+                
+                const icon = menuToggle.querySelector("i");
+                if (icon) icon.className = "fa-solid fa-bars";
             }
         }
     });
-});
-
-/* =========================================================================
-   INTERACTIVIDAD TOTAL - CLUB CAMPESTRE EL EDÉN
-   ========================================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // 1. CONTROL DEL MENÚ RESPONSIVO (HAMBURGUESA Y DROPDOWN)
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    const dropdownToggle = document.getElementById("dropdownToggle");
-    const dropdown = document.getElementById("dropdownServicios");
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
-            // Cambia el icono de hamburguesa a una 'X' al abrir
-            const icon = menuToggle.querySelector("i");
-            icon.classList.toggle("fa-bars");
-            icon.classList.toggle("fa-xmark");
-        });
-    }
-
-    if (dropdownToggle && dropdown) {
-        dropdownToggle.addEventListener("click", (e) => {
-            // Solo actúa en dispositivos móviles/táctiles
-            if (window.innerWidth <= 1024) {
-                e.preventDefault();
-                dropdown.classList.toggle("open");
-            }
-        });
-    }
 
 
-    // 2. CONTROL DEL CARRUSEL INTERACTIVO (HERO)
-    const track = document.getElementById("carouselTrack");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    if (track && prevBtn && nextBtn) {
-        const cards = Array.from(track.children);
-        let currentIndex = 0;
-
-        const updateCarousel = (index) => {
-            const cardWidth = cards[0].getBoundingClientRect().width + 20; // 20px es el gap/espacio
-            track.style.transform = `translateX(-${index * cardWidth}px)`;
-        };
-
-        nextBtn.addEventListener("click", () => {
-            if (currentIndex < cards.length - 1) {
-                currentIndex++;
-                updateCarousel(currentIndex);
-            } else {
-                currentIndex = 0; // Bucle: regresa al inicio
-                updateCarousel(currentIndex);
-            }
-        });
-
-        prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel(currentIndex);
-            } else {
-                currentIndex = cards.length - 1; // Bucle: va al final
-                updateCarousel(currentIndex);
-            }
-        });
-
-        // Adaptar el carrusel si el usuario estira o encoge la pantalla de la PC
-        window.addEventListener("resize", () => updateCarousel(currentIndex));
-    }
-
-
-    // 3. FUNCIONALIDAD DEL LIGHTBOX (GALERÍA VISUAL) -> ¡AQUÍ ESTÁ LA CORRECCIÓN!
+    // =========================================================================
+    // 3. FUNCIONALIDAD DEL LIGHTBOX (GALERÍA VISUAL)
+    // =========================================================================
     const galleryItems = document.querySelectorAll(".gallery-item");
     const lightboxModal = document.getElementById("lightboxModal");
     const lightboxImg = document.getElementById("lightboxImg");
@@ -199,11 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
             item.addEventListener("click", () => {
                 // Capturar la imagen de alta resolución y el texto descriptivo
                 const fullSizeSrc = item.getAttribute("data-src");
-                const imageAlt = item.querySelector("img").getAttribute("alt");
+                const imgElement = item.querySelector("img");
+                const imageAlt = imgElement ? imgElement.getAttribute("alt") : "";
 
                 // Inyectar los datos a la ventana emergente
-                lightboxImg.src = fullSizeSrc;
-                lightboxCaption.textContent = imageAlt;
+                if (lightboxImg) lightboxImg.src = fullSizeSrc;
+                if (lightboxCaption) lightboxCaption.textContent = imageAlt;
 
                 // Forzar el despliegue visual usando flexbox para centrar
                 lightboxModal.style.setProperty("display", "flex", "important");
@@ -214,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Función reutilizable para cerrar la ventana
         const closeLightbox = () => {
             lightboxModal.style.display = "none";
-            lightboxImg.src = ""; // Limpia el enlace para liberar memoria del navegador
+            if (lightboxImg) lightboxImg.src = ""; // Limpia el enlace para liberar memoria del navegador
             document.body.style.overflow = "auto"; // Devuelve el scroll normal
         };
 
