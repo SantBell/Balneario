@@ -1,0 +1,1261 @@
+/* =========================================================================
+   1. VARIABLES DE DISEÑO CIBERNÉTICO/EMPRESARIAL Y RESET
+   ========================================================================= */
+:root {
+    --primary-dark: #0a0f18;
+    --accent-blue: #00BFFF;
+    --accent-green: #2ecc71;
+    --text-light: #f5f5f5;
+    --text-muted: #b3c1d1;
+    --card-overlay: rgba(10, 15, 24, 0.75);
+    --font-main: 'Urbanist', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* =========================================================================
+   2. NAVBAR PRINCIPAL (ESCRITORIO)
+   ========================================================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100000; /* Se mantiene por encima de cualquier otra capa */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(10, 15, 24, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo a {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-logo a span {
+    color: var(--accent-blue);
+}
+
+/* Estilo unificado para Enlaces de Navegación y el Botón de Servicios */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a, 
+.dropdown-toggle {
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active, 
+.dropdown-toggle:hover {
+    color: var(--accent-blue);
+}
+
+/* Botón de reserva en Navbar */
+.btn-nav {
+    background: transparent;
+    border: 2px solid var(--accent-blue);
+    color: var(--text-light);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    background: var(--accent-blue);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+    color: #000;
+}
+
+/* Ocultar por completo el botón hamburguesa en pantallas grandes */
+.menu-toggle {
+    display: none;
+}
+
+/* =========================================================================
+   3. MENÚ DESPLEGABLE / DROPDOWN (ESCRITORIO)
+   ========================================================================= */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle i {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 15, 24, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-width: 220px;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 99999; 
+}
+
+/* Puente invisible para mantener el hover activo al bajar el cursor */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    margin: 0;
+    font-size: 15px;
+    color: #b3c1d1;
+    text-decoration: none;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu a i {
+    color: #00BFFF;
+    width: 20px;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0, 191, 255, 0.1);
+    color: #f5f5f5;
+    padding-left: 25px;
+}
+
+/* Comportamiento Hover en Escritorio */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+/* =========================================================================
+   4. SECCIÓN HERO Y VIDEO DE FONDO
+   ========================================================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10,15,24,0.5), rgba(10,15,24,0.85));
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 1200px;
+    width: 90%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.hero-title {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-title span {
+    color: var(--accent-blue);
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 750px;
+    margin-bottom: 50px;
+    line-height: 1.6;
+}
+
+/* =========================================================================
+   5. ESTRUCTURA Y TARJETAS DEL CARRUSEL
+   ========================================================================= */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-track-container {
+    width: 90%;
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-card {
+    min-width: calc(25% - 19px); 
+    height: 360px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(10,15,24,0.95), rgba(10,15,24,0.4));
+    text-align: left;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.card-info h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.card-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.carousel-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 12px 30px rgba(0, 191, 255, 0.25);
+}
+
+.carousel-card:hover img { transform: scale(1.08); }
+.carousel-card:hover .card-info { transform: translateY(0); }
+.carousel-card:hover .card-info p { opacity: 1; }
+
+.carousel-btn {
+    background: rgba(10, 15, 24, 0.8);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-light);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.carousel-btn:hover {
+    background: var(--accent-blue);
+    color: #000;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* =========================================================================
+   6. DISEÑO RESPONSIVO ORDENADO (MEDIA QUERIES DE MAYOR A MENOR)
+   ========================================================================= */
+
+/* --- TABLETAS Y DISPOSITIVOS HASTA 1024px --- */
+@media (max-width: 1024px) {
+    .carousel-card { 
+        min-width: calc(50% - 13px); /* Muestra 2 tarjetas */
+    } 
+    
+    .hero-title { 
+        font-size: 40px; 
+    }
+
+    /* Activar e integrar botón Hamburguesa */
+    .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        color: #f5f5f5;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 100001;
+    }
+
+    .nav-actions {
+        display: none; /* Esconde botón de reserva en el header móvil */
+    }
+
+    /* Transformación de barra horizontal a Panel Lateral */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido por defecto */
+        width: 300px;
+        height: 100vh;
+        background: rgba(10, 15, 24, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 40px;
+        gap: 25px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        z-index: 100000;
+        transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Inyectado por JS al abrir menú */
+    .nav-links.mobile-active {
+        right: 0;
+    }
+
+    .nav-links a, 
+    .dropdown-toggle {
+        font-size: 18px;
+        margin: 0;
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    /* Forzar a la flecha del submenú a ir al extremo derecho */
+    .dropdown-toggle {
+        justify-content: space-between;
+    }
+
+    /* Rediseño completo del submenú adaptado a móvil */
+    .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.03);
+        border: none;
+        box-shadow: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 5px 0;
+        display: none; /* Controlado con JS (.open) */
+    }
+
+    .dropdown-menu.open {
+        display: block;
+    }
+
+    .dropdown-toggle i {
+        transition: transform 0.3s;
+    }
+    
+    .dropdown.open-toggle .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+}
+
+/* --- CELULARES HASTA 650px --- */
+@media (max-width: 650px) {
+    .carousel-card { 
+        min-width: 100%; /* Muestra 1 tarjeta */
+    } 
+    .navbar { 
+        padding: 15px 5%; 
+    }
+    .hero-title { 
+        font-size: 32px; 
+    }
+    .hero-subtitle { 
+        font-size: 15px; 
+        margin-bottom: 40px;
+    }
+}
+
+/* --- CELULARES PEQUEÑOS HASTA 480px --- */
+@media (max-width: 480px) {
+    .nav-links {
+        width: 100%; /* Panel cubre pantalla completa */
+    }
+    .hero-title {
+        font-size: 28px;
+    }
+}
+
+/* =========================================================================
+   SOLUCIÓN DE COMPORTAMIENTO HÍBRIDO (MOUSE VS TÁCTIL)
+   ========================================================================= */
+
+/* Si el dispositivo utiliza un cursor/mouse real (Computadoras y Laptops) */
+@media (pointer: fine) {
+    /* Al pasar el mouse, muestra el menú de inmediato */
+    .dropdown:hover .dropdown-menu {
+        display: block !important; /* Fuerza el despliegue en escritorio */
+    }
+    
+    /* Gira la flecha armónicamente al hacer hover */
+    .dropdown:hover .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+}
+
+/* Si el dispositivo es puramente táctil (Celulares y Tabletas) */
+@media (pointer: coarse) {
+    /* Desactivamos por completo el hover para evitar que se quede "trabado" al tocar */
+    .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+}
+
+/* =========================================================================
+   7. ESTILOS DE SECCIONES DE SERVICIOS (BALNEARIO, HOTEL, SALONES)
+   ========================================================================= */
+
+.services-section {
+    padding: 120px 8%;
+    background-color: var(--primary-dark);
+}
+
+/* Fondo alternado sutil para romper la monotonía visual */
+.services-section.alt-bg {
+    background-color: #0d1321;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Encabezados de Sección de Alta Gama */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+}
+
+.section-tag {
+    display: inline-block;
+    color: var(--accent-blue);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.section-title span {
+    color: var(--accent-blue);
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Grid de Columnas Funcionales */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* Tarjetas del Balneario */
+/* =========================================================================
+   TARJETAS DEL BALNEARIO (ACTUALIZADAS CON IMAGEN)
+   ========================================================================= */
+.service-feature-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    
+    /* Flexbox vertical para controlar la simetría interna */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Contenedor de la Imagen */
+.feature-img {
+    height: 200px;
+    width: 100%; /* Asegura que ocupe todo el ancho de la tarjeta */
+    overflow: hidden;
+    position: relative;
+    background-color: #1e293b; /* Color de fondo gris oscuro de respaldo mientras carga la foto */
+}
+
+.feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Contenedor del contenido (Texto e Icono) */
+.feature-card-info {
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Absorbe el espacio para nivelar las tarjetas */
+}
+
+.feature-icon {
+    font-size: 28px;
+    color: var(--accent-blue);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.service-feature-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.service-feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0; /* Limpia márgenes para alineación precisa */
+}
+
+/* EFECTOS HOVER PREMIUM */
+.service-feature-card:hover {
+    transform: translateY(-8px);
+    background: rgba(0, 191, 255, 0.02);
+    border-color: rgba(0, 191, 255, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Zoom armónico en la imagen al pasar el cursor */
+.service-feature-card:hover .feature-img img {
+    transform: scale(1.06);
+}
+
+/* Showcase de Hotel Estilo Split */
+.hotel-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 50px;
+}
+
+.showcase-content h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.showcase-content p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.hotel-amenities {
+    list-style: none;
+    margin-bottom: 35px;
+}
+
+.hotel-amenities li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-light);
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.hotel-amenities li i {
+    color: var(--accent-blue);
+}
+
+.btn-showcase {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--accent-blue);
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn-showcase:hover {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    transform: scale(1.03);
+}
+
+.showcase-image {
+    height: 100%;
+    min-height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.hotel-showcase:hover .showcase-image img {
+    transform: scale(1.05);
+}
+
+/* Tarjetas de Salones */
+.salon-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    
+    /* SOLUCIÓN: Convertimos la tarjeta en flex vertical para que controle su altura interna */
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+.salon-img {
+    height: 220px;
+    overflow: hidden;
+    flex-shrink: 0; /* Evita que la imagen se deforme o se encoja */
+}
+
+.salon-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Contenedor de texto interno */
+.salon-info {
+    padding: 25px;
+    
+    /* SOLUCIÓN: Al activar Flexbox aquí, controlamos la separación de los textos y el botón */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Hace que este contenedor ocupe todo el espacio sobrante disponible */
+}
+
+.salon-info h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.salon-info p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px; /* Espacio de seguridad por si los textos se emparejan */
+}
+
+/* Indicador de cantidad de personas */
+.salon-capacity {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--accent-blue);
+    background: rgba(0, 191, 255, 0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    
+    /* SOLUCIÓN MAESTRA: El margen automático arriba lo empuja magnéticamente al fondo */
+    margin-top: auto; 
+    align-self: flex-start; /* Evita que el fondo azul del botón se estire a lo ancho */
+}
+
+/* Hover de Salones */
+.salon-card:hover {
+    border-color: rgba(0, 191, 255, 0.25);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.salon-card:hover .salon-img img {
+    transform: scale(1.06);
+}
+
+/* =========================================================================
+   8. AJUSTES RESPONSIVOS ADICIONALES PARA NUEVAS SECCIONES
+   ========================================================================= */
+@media (max-width: 1024px) {
+    .hotel-showcase {
+        grid-template-columns: 1fr; /* Apilar contenido del hotel verticalmente */
+        gap: 40px;
+        padding: 30px;
+    }
+    .showcase-image {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 80px 5%;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+}
+
+/* =========================================================================
+   9. SECCIÓN GALERÍA Y EFECTO LIGHTBOX
+   ========================================================================= */
+
+/* Distribución de la Rejilla de Imágenes */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+/* Contenedor Individual de Foto */
+.gallery-item {
+    position: relative;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Máscara Interactiva (Overlay) con Icono de Lupa */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 191, 255, 0.4); /* Capa con el tono azul de acento */
+    background: linear-gradient(rgba(13, 19, 33, 0.2), rgba(0, 191, 255, 0.6));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.gallery-overlay i {
+    color: #000;
+    background: #fff;
+    font-size: 18px;
+    padding: 14px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+/* Efectos al pasar el mouse por encima de la foto */
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-overlay i {
+    transform: scale(1);
+}
+
+/* ESTRUCTURA DE LA VENTANA MODAL (Oculta por defecto) */
+.lightbox-modal {
+    display: none; /* Se activa con JS */
+    position: fixed;
+    z-index: 999999; /* Por encima de cualquier menú o header */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 12, 20, 0.95); /* Fondo oscuro premium */
+    backdrop-filter: blur(8px); /* Efecto difuminado cyber */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilo de la Imagen Ampliada */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 75%;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: zoomAnimation 0.3s ease-out;
+}
+
+/* Pie de foto dinámico */
+.lightbox-caption {
+    margin: 15px auto;
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Botón de Cerrar (X) */
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: var(--accent-blue);
+    transform: scale(1.1);
+}
+
+/* Animación de apertura fluida */
+@keyframes zoomAnimation {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Adaptación para pantallas de Celulares */
+@media (max-width: 768px) {
+    .lightbox-content {
+        max-width: 95%;
+    }
+    .lightbox-close {
+        top: 20px;
+        right: 25px;
+        font-size: 35px;
+    }
+}
+
+/* =========================================================================
+   10. SECCIÓN DE CONTACTO Y FORMULARIO
+   ========================================================================= */
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Bloque del Formulario */
+.contact-form-block {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+}
+
+/* Inputs, Selects y Textareas Estilizados */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Cambiar el color de fondo de las opciones del select en modo oscuro */
+.form-group select option {
+    background-color: #0d1321;
+    color: #fff;
+}
+
+/* Efecto de enfoque (Focus) estilo cibernético */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-blue);
+    background: rgba(0, 191, 255, 0.02);
+    box-shadow: 0 0 12px rgba(0, 191, 255, 0.2);
+}
+
+/* Botón de Envío */
+.btn-submit {
+    padding: 15px;
+    background: var(--accent-blue);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Bloque de Información y Mapa */
+.contact-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.map-wrapper {
+    flex-grow: 1;
+    min-height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Detalles complementarios debajo del mapa */
+.quick-contact-details {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.detail-item i {
+    font-size: 18px;
+    color: var(--accent-blue);
+    width: 25px;
+    text-align: center;
+}
+
+.detail-item p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Footer básico */
+.main-footer {
+    text-align: center;
+    padding: 30px 5%;
+    background: #080c14;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.main-footer p {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* RESPONSIVO PARA CONTACTO */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Se apila verticalmente en tablets y móviles */
+    }
+    .map-wrapper {
+        min-height: 300px;
+    }
+}
+
+/* =========================================================================
+   11. BARRA DE REDES SOCIALES FLOTANTES CON COLORES OFICIALES
+   ========================================================================= */
+
+.social-floating-bar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 99999; /* Por encima de todo, excepto del lightbox */
+}
+
+/* Estilo Base de los Botones */
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 14px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px 0 0 25px; /* Bordes redondeados del lado izquierdo */
+    font-family: 'Urbanist', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    width: 50px; /* Tamaño compacto inicial (solo icono visible) */
+    height: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Alineación interna fija para el icono */
+.social-btn i {
+    font-size: 20px;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Texto de la etiqueta (oculto por defecto al estar fuera del ancho inicial) */
+.social-label {
+    margin-left: 15px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* COLORES OFICIALES DE MARCA */
+.social-btn.whatsapp {
+    background: #25D366;
+}
+
+.social-btn.facebook {
+    background: #1877F2;
+}
+
+/* Degradado corporativo oficial de Instagram */
+.social-btn.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* Fondo oscuro puro de TikTok con sutiles sombras de iluminación */
+.social-btn.tiktok {
+    background: #010101;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================================
+   EFECTOS HOVER (COMPUTADORA DE ESCRITORIO)
+   ========================================================================= */
+@media (pointer: fine) {
+    .social-btn:hover {
+        width: 150px; /* Se estira armónicamente hacia la izquierda */
+        padding-left: 20px;
+    }
+    
+    .social-btn:hover .social-label {
+        opacity: 1; /* Muestra el texto de manera fluida */
+    }
+    
+    /* Brillo de intensidad de color al interactuar */
+    .social-btn.whatsapp:hover { box-shadow: -2px 5px 20px rgba(37, 211, 102, 0.4); }
+    .social-btn.facebook:hover { box-shadow: -2px 5px 20px rgba(24, 119, 242, 0.4); }
+    .social-btn.instagram:hover { box-shadow: -2px 5px 20px rgba(204, 35, 102, 0.4); }
+    .social-btn.tiktok:hover { box-shadow: -2px 5px 20px rgba(255, 255, 255, 0.15); }
+}
+
+/* =========================================================================
+   ADAPTACIÓN RESPONSIVA (CELULARES Y TABLETAS)
+   ========================================================================= */
+@media (max-width: 768px) {
+    /* Reposicionamos la barra en la esquina inferior derecha como botones de acción rápidos */
+    .social-floating-bar {
+        top: auto;
+        bottom: 20px;
+        right: 15px;
+        transform: none;
+        flex-direction: row; /* Se acomodan de forma horizontal */
+        gap: 10px;
+        background: rgba(13, 19, 33, 0.7); /* Contenedor flotante traslúcido */
+        padding: 8px 12px;
+        border-radius: 30px;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    /* En celulares se vuelven círculos perfectos compactos */
+    .social-btn {
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .social-btn i {
+        font-size: 18px;
+    }
+
+    /* Ocultamos las etiquetas de texto por completo en celular para no robar espacio de pantalla */
+    .social-label {
+        display: none;
+    }
+}

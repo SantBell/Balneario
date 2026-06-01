@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Campestre el Eden | Diversión y Descanso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght=300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-logo">
+            <a href="#">Club Campestre<br><span>El Eden</span></a>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#" class="active">Inicio</a>
+            
+            <div class="dropdown" id="dropdownServicios">
+                <button type="button" class="dropdown-toggle" id="dropdownToggle">
+                    Servicios <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="#balneario"><i class="fa-solid fa-person-swimming"></i> Balneario</a>
+                    <a href="#hotel"><i class="fa-solid fa-hotel"></i> Hotel</a>
+                    <a href="#salones"><i class="fa-solid fa-champagne-glasses"></i> Salones</a>
+                </div>
+            </div>
+
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        
+        <div class="nav-actions">
+            <a href="#" class="btn-nav">Reservar Ahora</a>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="bg-video">
+                <source src="video/video-balneario.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">Un Oasis de Relajación <br>y <span>Celebraciones Inolvidables</span></h1>
+            <p class="hero-subtitle">Descubre el balance perfecto entre diversión en el balneario, el confort de nuestro hotel boutique y la elegancia de nuestros salones exclusivos.</p>
+            
+            <div class="carousel-container" id="servicios">
+                <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Tarjeta anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <div class="carousel-track-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        
+                        <div class="carousel-card">
+                            <img src="img/hero-balneario.jpg" alt="Balneario de lujo">
+                            <div class="card-info">
+                                <h3>El Balneario</h3>
+                                <p>Albercas termo-vitales y atracciones acuáticas.</p>
+                                <a href="#balneario" class="card-link">Explorar <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <img src="img/hero-hotel.jpg" alt="Hotel Boutique">
+                            <div class="card-info">
+                                <h3>Hotel Boutique</h3>
+                                <p>Habitaciones premium y confort absoluto.</p>
+                                <a href="#hotel" class="card-link">Ver Suites <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <img src="img/hero-jardin.jpg" alt="Salón Jardín Bodas">
+                            <div class="card-info">
+                                <h3>Salón Jardín</h3>
+                                <p>El escenario ideal para bodas y galas mágicas.</p>
+                                <a href="#salones" class="card-link">Cotizar <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-card">
+                            <img src="img/hero-libre.jpg" alt="Salón al aire libre">
+                            <div class="card-info">
+                                <h3>Al Aire Libre</h3>
+                                <p>Eventos corporativos y reuniones lounge.</p>
+                                <a href="#salones" class="card-link">Conocer Más <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn next-btn" id="nextBtn" aria-label="Siguiente tarjeta">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <section id="balneario" class="services-section">
+        <div class="section-header">
+            <span class="section-tag">Diversión Acuática</span>
+            <h2 class="section-title">El <span>Balneario</span></h2>
+            <p class="section-subtitle">Sumérgete en un oasis diseñado para el entretenimiento de toda la familia y el descanso profundo.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-feature-card">
+                <div class="feature-img">
+                    <img src="img/balneario-termal.jpg" alt="Albercas Termales El Eden">
+                </div>
+                <div class="feature-card-info">
+                    <div class="feature-icon"><i class="fa-solid fa-temperature-three-quarters"></i></div>
+                    <h3>Albercas Termales</h3>
+                    <p>Aguas reconfortantes a temperatura perfecta para una relajación muscular total en cualquier época del año.</p>
+                </div>
+            </div>
+
+            <div class="service-feature-card">
+                <div class="feature-img">
+                    <img src="img/balneario-infantil.jpg" alt="Zona Infantil Aquapark">
+                </div>
+                <div class="feature-card-info">
+                    <div class="feature-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <h3>Zona Infantil</h3>
+                    <p>Toboganes seguros, chapoteaderos interactivos y juegos acuáticos supervisados para los más pequeños.</p>
+                </div>
+            </div>
+
+            <div class="service-feature-card">
+                <div class="feature-img">
+                    <img src="img/balneario-extremo.jpg" alt="Toboganes Extremos">
+                </div>
+                <div class="feature-card-info">
+                    <div class="feature-icon"><i class="fa-solid fa-water"></i></div>
+                    <h3>Atracciones Extremas</h3>
+                    <p>Desafía la adrenalina en nuestros toboganes de alta velocidad y la fosa de clavados reglamentaria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hotel" class="services-section alt-bg">
+        <div class="section-header">
+            <span class="section-tag">Confort Absoluto</span>
+            <h2 class="section-title">Hotel <span>Boutique</span></h2>
+            <p class="section-subtitle">Un refugio exclusivo de paz y sofisticación con atención personalizada las 24 horas.</p>
+        </div>
+
+        <div class="hotel-showcase">
+            <div class="showcase-content">
+                <h3>Suites Premium & Master Suites</h3>
+                <p>Nuestras habitaciones fusionan el diseño arquitectónico moderno con la calidez del descanso campestre. Equipadas con sábanas de alta densidad, tina de hidromasaje privada, terraza con vista panorámica a los jardines y conectividad inteligente.</p>
+                <ul class="hotel-amenities">
+                    <li><i class="fa-solid fa-wifi"></i> Wi-Fi de Alta Velocidad</li>
+                    <li><i class="fa-solid fa-utensils"></i> Desayuno Gourmet Incluido</li>
+                    <li><i class="fa-solid fa-bell"></i> Room Service Premium</li>
+                </ul>
+                <a href="#" class="btn-showcase">Ver Disponibilidad</a>
+            </div>
+            <div class="showcase-image">
+                <img src="img/hotel-suite.jpg" alt="Suite Ejecutiva Hotel El Eden">
+            </div>
+        </div>
+    </section>
+
+    <section id="salones" class="services-section">
+        <div class="section-header">
+            <span class="section-tag">Momentos Mágicos</span>
+            <h2 class="section-title">Salones de <span>Eventos</span></h2>
+            <p class="section-subtitle">El escenario perfecto para materializar la boda de tus sueños, galas empresariales o aniversarios íntimos.</p>
+        </div>
+
+        <div class="services-grid text-center">
+            <div class="salon-card">
+                <div class="salon-img">
+                    <img src="img/salon-gala.jpg" alt="Gran Salón Gala">
+                </div>
+                <div class="salon-info">
+                    <h3>Gran Salón Gala</h3>
+                    <p>Espacio cerrado y climatizado con capacidad hasta para 500 invitados. Ideal para banquetes y pistas de baile iluminadas.</p>
+                    <span class="salon-capacity"><i class="fa-solid fa-users"></i> 150 - 500 pers.</span>
+                </div>
+            </div>
+
+            <div class="salon-card">
+                <div class="salon-img">
+                    <img src="img/salon-jardin.jpg" alt="Jardín El Eden">
+                </div>
+                <div class="salon-info">
+                    <h3>Jardín El Edén</h3>
+                    <p>Hermosas áreas verdes rodeadas de vegetación exótica, lagos artificiales e iluminación arquitectónica nocturna.</p>
+                    <span class="salon-capacity"><i class="fa-solid fa-users"></i> 200 - 800 pers.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="galeria" class="services-section alt-bg">
+        <div class="section-header">
+            <span class="section-tag">Capturas de un Paraíso</span>
+            <h2 class="section-title">Galería <span>Visual</span></h2>
+            <p class="section-subtitle">Explora los rincones más espectaculares de nuestras instalaciones y comienza a vivir la experiencia El Edén.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=600&auto=format&fit=crop" alt="Albercas El Edén">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=600&auto=format&fit=crop" alt="Hotel Boutique Interior">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=600&auto=format&fit=crop" alt="Montaje de Boda en Jardín">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600&auto=format&fit=crop" alt="Relajación Termal">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop" alt="Fachada del Hotel Boutique">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=600&auto=format&fit=crop" alt="Iluminación de Eventos Nocturnos">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Imagen ampliada">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <div class="social-floating-bar">
+        <a href="https://wa.me/524611234567" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" aria-label="Contacto por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-label">WhatsApp</span>
+        </a>
+        
+        <a href="https://facebook.com/tu_pagina" target="_blank" rel="noopener noreferrer" class="social-btn facebook" aria-label="Síguenos en Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+            <span class="social-label">Facebook</span>
+        </a>
+        
+        <a href="https://instagram.com/tu_cuenta" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Síguenos en Instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-label">Instagram</span>
+        </a>
+        
+        <a href="https://tiktok.com/@tu_cuenta" target="_blank" rel="noopener noreferrer" class="social-btn tiktok" aria-label="Síguenos en TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+            <span class="social-label">TikTok</span>
+        </a>
+    </div>
+
+    <section id="contacto" class="services-section">
+        <div class="section-header">
+            <span class="section-tag">Ponte en Contacto</span>
+            <h2 class="section-title">Platica con <span>Nosotros</span></h2>
+            <p class="section-subtitle">¿Tienes alguna duda sobre nuestras tarifas, disponibilidad en el hotel o deseas cotizar un evento? Escríbenos y te responderemos de inmediato.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-form-block">
+                <form action="enviar.php" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico</label>
+                        <input type="email" id="correo" name="correo" placeholder="Ej. juan@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (WhatsApp)</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 5512345678" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asunto">¿En qué estás interesado?</label>
+                        <select id="asunto" name="asunto" required>
+                            <option value="" disabled selected>Selecciona una opción...</option>
+                            <option value="Balneario">Visita al Balneario</option>
+                            <option value="Hotel">Reservación de Hotel Boutique</option>
+                            <option value="Eventos">Cotización de Eventos (Salones)</option>
+                            <option value="General">Dudas Generales</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos más sobre tus planes..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Mensaje <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+
+            <div class="contact-info-block">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14948.371987585098!2d-100.93181825000001!3d20.498335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842ca0f074d2dbbf%3A0x7d6f55bf224cbbe0!2sCelaya%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <div class="quick-contact-details">
+                    <div class="detail-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>Km 10 Carretera Campestre, Celaya, Guanajuato, México</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+52 (461) 123 4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Club Campestre El Edén. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
