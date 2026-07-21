@@ -265,46 +265,52 @@ body {
     justify-content: center;
 }
 
+/* Contenedor visible del carrusel */
 .carousel-track-container {
-    width: 90%;
-    overflow: hidden;
-    padding: 15px 0;
+    width: 100%;
+    max-width: 600px; /* Ajusta este valor al tamaño máximo deseado para la tarjeta */
+    margin: 0 auto;
+    overflow: hidden; /* Oculta las tarjetas vecinas */
+    position: relative;
 }
 
+/* Pista que se desplaza horizontalmente */
 .carousel-track {
     display: flex;
-    gap: 25px;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
 }
 
+/* Tarjeta individual: Exactamente 1 por vista */
+/* IMPORTANTE: Cada tarjeta debe ser la referencia de posicionamiento */
 .carousel-card {
-    min-width: calc(25% - 19px); 
-    height: 360px;
-    position: relative;
-    border-radius: 16px;
+    flex: 0 0 100%; /* No se encoge y ocupa el 100% del ancho */
+    width: 100%;
+    position: relative; /* <--- ESTO EVITA QUE LOS TÍTULOS SE ENCIMEN */
+    border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.4s ease;
-    cursor: pointer;
+    box-sizing: border-box;
 }
 
+/* Asegurar que la imagen escale bien */
 .carousel-card img {
     width: 100%;
-    height: 100%;
+    height: 350px; /* Ajusta la altura a tu gusto */
     object-fit: cover;
-    transition: transform 0.5s ease;
+    border-radius: 12px;
 }
 
+/* Información dentro de la tarjeta */
 .card-info {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
-    padding: 25px;
-    background: linear-gradient(to top, rgba(10,15,24,0.95), rgba(10,15,24,0.4));
+    right: 0;
+    padding: 25px 20px;
+    background: linear-gradient(transparent, rgba(10, 15, 24, 0.95)); /* Degradado para legibilidad */
+    color: #ffffff;
     text-align: left;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
+    z-index: 2;
 }
 
 .card-info h3 {
@@ -317,7 +323,7 @@ body {
     font-size: 14px;
     color: var(--text-muted);
     margin-bottom: 15px;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
@@ -331,7 +337,11 @@ body {
     gap: 5px;
 }
 
-.carousel-card:hover {
+.card-link:hover {
+    color: #ffffff;
+}
+
+/* .carousel-card:hover {
     transform: translateY(-10px);
     border-color: var(--accent-blue);
     box-shadow: 0 12px 30px rgba(0, 191, 255, 0.25);
@@ -339,7 +349,7 @@ body {
 
 .carousel-card:hover img { transform: scale(1.08); }
 .carousel-card:hover .card-info { transform: translateY(0); }
-.carousel-card:hover .card-info p { opacity: 1; }
+.carousel-card:hover .card-info p { opacity: 1; } */
 
 .carousel-btn {
     background: rgba(10, 15, 24, 0.8);
@@ -829,10 +839,105 @@ body {
    9. SECCIÓN GALERÍA Y EFECTO LIGHTBOX
    ========================================================================= */
 
+/* =========================================================================
+   ESTILOS DE PESTAÑAS (IMÁGENES / VÍDEOS)
+   ========================================================================= */
+
+.gallery-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.gallery-tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-light, #ffffff);
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.gallery-tab-btn:hover {
+    background: rgba(0, 191, 255, 0.2);
+    border-color: var(--accent-blue, #00bfff);
+}
+
+.gallery-tab-btn.active {
+    background: var(--accent-blue, #00bfff);
+    border-color: var(--accent-blue, #00bfff);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+}
+
+/* Control de Visibilidad de Pestañas */
+.gallery-tab-content {
+    display: none;
+}
+
+.gallery-tab-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================================
+   REJILLA DE VÍDEOS
+   ========================================================================= */
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.video-item {
+    background: #0d1321;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Relación de aspecto 16:9 */
+}
+
+.video-wrapper video,
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.video-item h3 {
+    padding: 15px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+}
+
 /* Distribución de la Rejilla de Imágenes */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     width: 100%;
 }
@@ -845,6 +950,7 @@ body {
     overflow: hidden;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #0d1321;
 }
 
 .gallery-item img {
@@ -854,116 +960,204 @@ body {
     transition: transform 0.5s ease;
 }
 
-/* Máscara Interactiva (Overlay) con Icono de Lupa */
+.gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none; /* Para que los clics pasen a la tarjeta */
+}
+
+/* Overlay interactivo */
 .gallery-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 191, 255, 0.4); /* Capa con el tono azul de acento */
-    background: linear-gradient(rgba(13, 19, 33, 0.2), rgba(0, 191, 255, 0.6));
+    background: rgba(0, 0, 0, 0.25);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: all 0.4s ease;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 16px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, background 0.3s ease;
+    z-index: 3;
 }
 
-.gallery-overlay i {
-    color: #000;
-    background: #fff;
-    font-size: 18px;
-    padding: 14px;
+/* Botón flotante blanco con ícono + */
+.btn-plus-trigger {
+    width: 38px;
+    height: 38px;
+    background: #ffffff;
+    color: #0a0f18;
     border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transform: scale(0.7);
-    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Efectos al pasar el mouse por encima de la foto */
+/* Interacciones Hover */
 .gallery-item:hover img {
     transform: scale(1.08);
 }
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
+    background: rgba(0, 191, 255, 0.2);
 }
 
-.gallery-item:hover .gallery-overlay i {
-    transform: scale(1);
+.gallery-item:hover .btn-plus-trigger {
+    transform: scale(1.15);
+    background: var(--accent-blue);
+    color: #ffffff;
 }
 
-/* ESTRUCTURA DE LA VENTANA MODAL (Oculta por defecto) */
+/* =========================================================================
+   VENTANA MODAL LIGHTBOX
+   ========================================================================= */
 .lightbox-modal {
-    display: none; /* Se activa con JS */
+    display: none;
     position: fixed;
-    z-index: 999999; /* Por encima de cualquier menú o header */
+    z-index: 999999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(8, 12, 20, 0.95); /* Fondo oscuro premium */
-    backdrop-filter: blur(8px); /* Efecto difuminado cyber */
+    background-color: rgba(8, 12, 20, 0.95);
+    backdrop-filter: blur(10px);
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-/* Estilo de la Imagen Ampliada */
+.lightbox-modal.active {
+    display: flex !important;
+}
+
 .lightbox-content {
-    margin: auto;
-    display: block;
     max-width: 85%;
-    max-height: 75%;
-    border-radius: 8px;
+    max-height: 80vh;
+    border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
     animation: zoomAnimation 0.3s ease-out;
+    object-fit: contain;
 }
 
-/* Pie de foto dinámico */
-.lightbox-caption {
-    margin: 15px auto;
-    color: var(--text-light);
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-align: center;
-}
-
-/* Botón de Cerrar (X) */
 .lightbox-close {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 25px;
+    right: 35px;
     color: #fff;
-    font-size: 40px;
-    font-weight: 300;
+    font-size: 38px;
+    background: none;
+    border: none;
     cursor: pointer;
+    line-height: 1;
     transition: transform 0.2s, color 0.2s;
+    z-index: 10;
 }
 
 .lightbox-close:hover {
     color: var(--accent-blue);
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
-/* Animación de apertura fluida */
 @keyframes zoomAnimation {
-    from { transform: scale(0.9); opacity: 0; }
+    from { transform: scale(0.85); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Adaptación para pantallas de Celulares */
 @media (max-width: 768px) {
     .lightbox-content {
-        max-width: 95%;
+        max-width: 92%;
+        max-height: 75vh;
     }
     .lightbox-close {
-        top: 20px;
-        right: 25px;
-        font-size: 35px;
+        top: 15px;
+        right: 20px;
+        font-size: 32px;
+    }
+}
+
+/* Soporte de reproductor dentro del Lightbox */
+.lightbox-media-container {
+    max-width: 85%;
+    max-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+video.lightbox-content {
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 12px;
+    outline: none;
+    background: #000;
+}
+
+/* Ícono de play para los vídeos */
+.video-item .btn-plus-trigger i {
+    font-size: 14px;
+    margin-left: 2px; /* Ajuste óptico del ícono play */
+}
+
+/* =========================================================================
+   ESTILOS DE NAVEGACIÓN DEL LIGHTBOX
+   ========================================================================= */
+
+/* Botones de navegación (Anterior / Siguiente) */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.lightbox-prev {
+    left: 25px;
+}
+
+.lightbox-next {
+    right: 25px;
+}
+
+.lightbox-nav:hover {
+    background: var(--accent-blue, #00bfff);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .lightbox-prev {
+        left: 10px;
+    }
+    .lightbox-next {
+        right: 10px;
     }
 }
 

@@ -227,46 +227,106 @@
             </div>
         </div>
     </section>
+
+    <!-- SECCIÓN GALERÍA DIVIDIDA EN IMÁGENES Y VÍDEOS -->
     <section id="galeria" class="services-section alt-bg">
         <div class="section-header">
             <span class="section-tag">Capturas de un Paraíso</span>
             <h2 class="section-title">Galería <span>Visual</span></h2>
-            <p class="section-subtitle">Explora los rincones más espectaculares de nuestras instalaciones y comienza a vivir la experiencia El Edén.</p>
+            <p class="section-subtitle">Explora las instalaciones a través de fotos y vídeos.</p>
+            
+            <!-- Pestañas de Filtrado -->
+            <div class="gallery-tabs">
+                <button class="gallery-tab-btn active" data-tab="imagenes">
+                    <i class="fa-solid fa-image"></i> Imágenes
+                </button>
+                <button class="gallery-tab-btn" data-tab="videos">
+                    <i class="fa-solid fa-video"></i> Vídeos
+                </button>
+            </div>
         </div>
 
-        <div class="gallery-grid">
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?q=80&w=600&auto=format&fit=crop" alt="Albercas El Edén">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=600&auto=format&fit=crop" alt="Hotel Boutique Interior">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=600&auto=format&fit=crop" alt="Montaje de Boda en Jardín">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=600&auto=format&fit=crop" alt="Relajación Termal">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600&auto=format&fit=crop" alt="Fachada del Hotel Boutique">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200&auto=format&fit=crop">
-                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=600&auto=format&fit=crop" alt="Iluminación de Eventos Nocturnos">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        <!-- Pestaña 1: Imágenes -->
+        <div class="gallery-tab-content active" id="tab-imagenes">
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+
+        <!-- Pestaña 2: Vídeos (5 tarjetas idénticas a las imágenes) -->
+        <div class="gallery-tab-content" id="tab-videos">
+            <div class="gallery-grid" id="video-grid">
+                
+                <!-- Vídeo 01 -->
+                <div class="gallery-item video-item" data-video="video/video01.mp4">
+                    <video src="video/video01.mp4#t=0.5" preload="metadata" muted></video>
+                    <div class="gallery-overlay">
+                        <div class="btn-plus-trigger">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 02 -->
+                <div class="gallery-item video-item" data-video="video/video02.mp4">
+                    <video src="video/video02.mp4#t=0.5" preload="metadata" muted></video>
+                    <div class="gallery-overlay">
+                        <div class="btn-plus-trigger">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 03 -->
+                <div class="gallery-item video-item" data-video="video/video03.mp4">
+                    <video src="video/video03.mp4#t=0.5" preload="metadata" muted></video>
+                    <div class="gallery-overlay">
+                        <div class="btn-plus-trigger">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 04 -->
+                <div class="gallery-item video-item" data-video="video/video04.mp4">
+                    <video src="video/video04.mp4#t=0.5" preload="metadata" muted></video>
+                    <div class="gallery-overlay">
+                        <div class="btn-plus-trigger">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vídeo 05 -->
+                <div class="gallery-item video-item" data-video="video/video04.mp4">
+                    <video src="video/video05.mp4#t=0.5" preload="metadata" muted></video>
+                    <div class="gallery-overlay">
+                        <div class="btn-plus-trigger">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- LIGHTBOX MODAL HÍBRIDO (SOPORTA IMAGEN Y VÍDEO) -->
     <div class="lightbox-modal" id="lightboxModal">
-        <span class="lightbox-close" id="lightboxClose">&times;</span>
-        <img class="lightbox-content" id="lightboxImg" src="" alt="Imagen ampliada">
-        <div id="lightboxCaption" class="lightbox-caption"></div>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor">&times;</button>
+        
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Contenedor dinámico de medios -->
+        <div class="lightbox-media-container">
+            <img class="lightbox-content" id="lightboxImg" src="" alt="Imagen ampliada" style="display: none;">
+            <video class="lightbox-content" id="lightboxVideo" controls style="display: none;"></video>
+        </div>
     </div>
+    
 
     <div class="social-floating-bar">
         <a href="https://wa.me/524611234567" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp" aria-label="Contacto por WhatsApp">
@@ -338,7 +398,7 @@
             <div class="contact-info-block">
                 <div class="map-wrapper">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14948.371987585098!2d-100.93181825000001!3d20.498335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842ca0f074d2dbbf%3A0x7d6f55bf224cbbe0!2sCelaya%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.5877988418342!2d-98.99054227419661!3d18.90535915730618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce6dbe82ddb41d%3A0x6eb5c9eec20a3d9f!2sEl%20Eden%20Club%20Campestre!5e0!3m2!1ses-419!2smx!4v1784659507291!5m2!1ses-419!2smx"
                         width="100%" 
                         height="100%" 
                         style="border:0;" 
@@ -351,11 +411,11 @@
                 <div class="quick-contact-details">
                     <div class="detail-item">
                         <i class="fa-solid fa-location-dot"></i>
-                        <p>Km 10 Carretera Campestre, Celaya, Guanajuato, México</p>
+                        <p>Carretera Ciudad de Mexico a Cuautla km 26, Ahuilican, 62738 Oaxtepec, Morelos</p>
                     </div>
                     <div class="detail-item">
                         <i class="fa-solid fa-phone"></i>
-                        <p>+52 (461) 123 4567</p>
+                        <p>+52 (735) 351 0470</p>
                     </div>
                 </div>
             </div>

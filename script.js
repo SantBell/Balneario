@@ -1,58 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // =========================================================================
-    // 1. CONFIGURACIÓN Y CONTROL DEL CARRUSEL / MOSAICO (HERO)
+    // 1. CONTROL DEL CARRUSEL (1 TARJETA A LA VEZ + AUTO-PLAY)
     // =========================================================================
     const track = document.getElementById("carouselTrack");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const cards = document.querySelectorAll(".carousel-card");
+    const carouselContainer = document.querySelector(".carousel-container");
 
     let currentIndex = 0;
+    let autoPlayInterval = null;
+    const TIEMPO_CAMBIO = 4000; // 4 segundos
 
     function updateCarouselPosition() {
         if (!cards.length || !track) return;
         
-        // Obtener el ancho de una tarjeta dinámica para el cálculo exacto
         const cardWidth = cards[0].getBoundingClientRect().width;
-        // Espacio (gap) configurado en el CSS (ajusta a 20 o 25 según tu diseño)
-        const gap = 25; 
-        
-        // Desplazamiento matemático en el eje X
-        track.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     }
 
-    if (track && prevBtn && nextBtn && cards.length > 0) {
-        nextBtn.addEventListener("click", () => {
-            // Cuántas tarjetas se ven en pantalla según el dispositivo
-            const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
-            
-            if (currentIndex < cards.length - maxVisibleCards) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Efecto bucle al llegar al final (regresa al inicio)
-            }
-            updateCarouselPosition();
-        });
+    function nextSlide() {
+        if (currentIndex < cards.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        updateCarouselPosition();
+    }
 
-        prevBtn.addEventListener("click", () => {
-            const maxVisibleCards = window.innerWidth <= 650 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
-            
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = cards.length - maxVisibleCards; // Salta al final si está al principio
-            }
-            updateCarouselPosition();
-        });
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = cards.length - 1;
+        }
+        updateCarouselPosition();
+    }
 
-        // Reajustar posición si la ventana cambia de tamaño o rota la pantalla
+    function startAutoPlay() {
+        if (!autoPlayInterval) {
+            autoPlayInterval = setInterval(nextSlide, TIEMPO_CAMBIO);
+        }
+    }
+
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+
+    if (track && cards.length > 0) {
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                nextSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                prevSlide();
+                stopAutoPlay();
+                startAutoPlay();
+            });
+        }
+
+        if (carouselContainer) {
+            carouselContainer.addEventListener("mouseenter", stopAutoPlay);
+            carouselContainer.addEventListener("mouseleave", startAutoPlay);
+        }
+
         window.addEventListener("resize", updateCarouselPosition);
+        startAutoPlay();
     }
 
 
     // =========================================================================
-    // 2. CONTROL DEL MENÚ RESPONSIVE Y SUBMENÚ (DROPDOWN) PARA CELULARES
+    // 2. CONTROL DEL MENÚ RESPONSIVE
     // =========================================================================
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
@@ -60,48 +87,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdownMenu = document.querySelector(".dropdown-menu");
     const dropdownContainer = document.getElementById("dropdownServicios");
 
-    // Abrir y Cerrar el Menú Lateral Principal (Hamburguesa)
     if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", (e) => {
-            e.stopPropagation(); // Evita interferencias con el clic del documento
+            e.stopPropagation();
             navLinks.classList.toggle("mobile-active");
-            
-            // Cambia el ícono visual de hamburguesa (☰) a equis (✕)
             const icon = menuToggle.querySelector("i");
             if (icon) {
-                if (navLinks.classList.contains("mobile-active")) {
-                    icon.className = "fa-solid fa-xmark";
-                } else {
-                    icon.className = "fa-solid fa-bars";
-                }
+                icon.className = navLinks.classList.contains("mobile-active") ? "fa-solid fa-xmark" : "fa-solid fa-bars";
             }
         });
     }
 
-    // Control Seguro y Táctil del Dropdown de Servicios (Evita recarga en celulares)
     if (dropdownToggle && (dropdownMenu || dropdownContainer)) {
         dropdownToggle.addEventListener("click", (e) => {
-            // Solo intercepta el comportamiento si estamos en resoluciones móviles/tabletas
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
-                e.stopPropagation(); // Detiene la propagación del evento táctil
-                
-                // Agrega compatibilidad para ambas clases del CSS que tenías mezcladas
+                e.stopPropagation();
                 if (dropdownMenu) dropdownMenu.classList.toggle("open");
                 if (dropdownContainer) dropdownContainer.classList.toggle("open-toggle");
             }
         });
     }
 
-    // Cerrar el menú limpiamente al seleccionar una opción real (Balneario, Hotel, etc.)
     const allLinks = navLinks ? navLinks.querySelectorAll("a:not(.dropdown-toggle)") : [];
     allLinks.forEach(link => {
         link.addEventListener("click", () => {
             if (navLinks) navLinks.classList.remove("mobile-active");
             if (dropdownMenu) dropdownMenu.classList.remove("open");
             if (dropdownContainer) dropdownContainer.classList.remove("open-toggle");
-            
-            // Restablece el ícono de hamburguesa
             if (menuToggle) {
                 const icon = menuToggle.querySelector("i");
                 if (icon) icon.className = "fa-solid fa-bars";
@@ -109,75 +122,167 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Cerrar de forma inteligente si el usuario da un toque fuera del área del menú
-    document.addEventListener("click", (e) => {
-        if (navLinks && menuToggle) {
-            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                navLinks.classList.remove("mobile-active");
-                if (dropdownMenu) dropdownMenu.classList.remove("open");
-                if (dropdownContainer) dropdownContainer.classList.remove("open-toggle");
-                
-                const icon = menuToggle.querySelector("i");
-                if (icon) icon.className = "fa-solid fa-bars";
+
+    // =========================================================================
+    // 3. GALERÍA Y LIGHTBOX MULTIMEDIA (IMÁGENES Y VÍDEOS)
+    // =========================================================================
+    const galleryGrid = document.getElementById('gallery-grid');
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxVideo = document.getElementById('lightboxVideo');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+    const tabContents = document.querySelectorAll('.gallery-tab-content');
+
+    let currentMode = 'imagenes'; // 'imagenes' o 'videos'
+    let currentGalleryIndex = 0;
+    const TOTAL_IMAGENES = 99;
+    const CARPETA_IMG = 'img/Galeria';
+
+    // 1. Control de Pestañas
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentMode = btn.getAttribute('data-tab');
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            const targetContent = document.getElementById(`tab-${currentMode}`);
+            if (targetContent) targetContent.classList.add('active');
+        });
+    });
+
+    // 2. Renderizar 99 imágenes dinámicamente
+    if (galleryGrid) {
+        for (let i = 1; i <= TOTAL_IMAGENES; i++) {
+            const num = String(i).padStart(2, '0');
+            const rutaImagen = `${CARPETA_IMG}/img${num}.jpg`;
+
+            const item = document.createElement('div');
+            item.classList.add('gallery-item');
+            item.setAttribute('data-index', i - 1);
+
+            item.innerHTML = `
+                <img src="${rutaImagen}" alt="Galería El Edén" loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="btn-plus-trigger">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            `;
+            galleryGrid.appendChild(item);
+        }
+    }
+
+    // 3. Abrir Lightbox según el medio seleccionado
+    const openLightbox = (index) => {
+        currentGalleryIndex = index;
+        const currentTab = document.getElementById(`tab-${currentMode}`);
+        if (!currentTab) return;
+        
+        const items = currentTab.querySelectorAll('.gallery-item');
+
+        if (index < 0 || index >= items.length) return;
+
+        const selectedItem = items[index];
+
+        if (currentMode === 'imagenes') {
+            if (lightboxVideo) {
+                lightboxVideo.pause();
+                lightboxVideo.style.display = 'none';
             }
+            
+            const imgPath = `${CARPETA_IMG}/img${String(index + 1).padStart(2, '0')}.jpg`;
+            if (lightboxImg) {
+                lightboxImg.src = imgPath;
+                lightboxImg.style.display = 'block';
+            }
+        } else {
+            if (lightboxImg) {
+                lightboxImg.style.display = 'none';
+                lightboxImg.src = '';
+            }
+
+            const videoPath = selectedItem.getAttribute('data-video');
+            if (lightboxVideo) {
+                lightboxVideo.src = videoPath;
+                lightboxVideo.style.display = 'block';
+                lightboxVideo.play();
+            }
+        }
+
+        if (lightboxModal) {
+            lightboxModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    // Listeners de clics para abrir imágenes y vídeos
+    document.addEventListener('click', (e) => {
+        const item = e.target.closest('.gallery-item');
+        if (!item) return;
+
+        const currentTab = document.getElementById(`tab-${currentMode}`);
+        if (!currentTab) return;
+
+        const items = Array.from(currentTab.querySelectorAll('.gallery-item'));
+        const index = items.indexOf(item);
+
+        if (index !== -1) {
+            openLightbox(index);
         }
     });
 
+    // 4. Navegación (Siguiente / Anterior)
+    const navigateLightbox = (direction) => {
+        const currentTab = document.getElementById(`tab-${currentMode}`);
+        if (!currentTab) return;
 
-    // =========================================================================
-    // 3. FUNCIONALIDAD DEL LIGHTBOX (GALERÍA VISUAL)
-    // =========================================================================
-    const galleryItems = document.querySelectorAll(".gallery-item");
-    const lightboxModal = document.getElementById("lightboxModal");
-    const lightboxImg = document.getElementById("lightboxImg");
-    const lightboxCaption = document.getElementById("lightboxCaption");
-    const lightboxClose = document.getElementById("lightboxClose");
+        const totalItems = currentTab.querySelectorAll('.gallery-item').length;
 
-    // Verificamos que la galería exista en el HTML antes de activar los clics
-    if (galleryItems.length > 0 && lightboxModal) {
-        
-        galleryItems.forEach(item => {
-            item.addEventListener("click", () => {
-                // Capturar la imagen de alta resolución y el texto descriptivo
-                const fullSizeSrc = item.getAttribute("data-src");
-                const imgElement = item.querySelector("img");
-                const imageAlt = imgElement ? imgElement.getAttribute("alt") : "";
-
-                // Inyectar los datos a la ventana emergente
-                if (lightboxImg) lightboxImg.src = fullSizeSrc;
-                if (lightboxCaption) lightboxCaption.textContent = imageAlt;
-
-                // Forzar el despliegue visual usando flexbox para centrar
-                lightboxModal.style.setProperty("display", "flex", "important");
-                document.body.style.overflow = "hidden"; // Bloquea el scroll de la página de fondo
-            });
-        });
-
-        // Función reutilizable para cerrar la ventana
-        const closeLightbox = () => {
-            lightboxModal.style.display = "none";
-            if (lightboxImg) lightboxImg.src = ""; // Limpia el enlace para liberar memoria del navegador
-            document.body.style.overflow = "auto"; // Devuelve el scroll normal
-        };
-
-        // Cerrar al dar clic en la 'X'
-        if (lightboxClose) {
-            lightboxClose.addEventListener("click", closeLightbox);
+        if (direction === 'next') {
+            currentGalleryIndex = (currentGalleryIndex + 1) % totalItems;
+        } else {
+            currentGalleryIndex = (currentGalleryIndex - 1 + totalItems) % totalItems;
         }
+        openLightbox(currentGalleryIndex);
+    };
 
-        // Cerrar de forma intuitiva si el usuario hace clic en el fondo negro
-        lightboxModal.addEventListener("click", (e) => {
-            if (e.target === lightboxModal) {
-                closeLightbox();
+    if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox('next'); });
+    if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox('prev'); });
+
+    // 5. Cierre del Lightbox
+    const closeLightbox = () => {
+        if (lightboxModal) {
+            lightboxModal.classList.remove('active');
+            if (lightboxVideo) {
+                lightboxVideo.pause();
+                lightboxVideo.src = '';
             }
-        });
+            if (lightboxImg) lightboxImg.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    };
 
-        // Soporte de accesibilidad: Cerrar si se presiona la tecla Escape (ESC)
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && lightboxModal.style.display === "flex") {
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal || e.target.classList.contains('lightbox-media-container')) {
                 closeLightbox();
             }
         });
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (lightboxModal && lightboxModal.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') navigateLightbox('next');
+            if (e.key === 'ArrowLeft') navigateLightbox('prev');
+        }
+    });
 
 });
